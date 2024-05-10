@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\CustomerController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,6 +16,10 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
+Route::get('customer/import',[CustomerController::class,'index']);
+Route::post('customer/import',[CustomerController::class,'importExcelData']);
+
 Route::group(['middleware' => ['isAdmin']], function() {
 // for permissions
 Route::resource('permissions',App\Http\Controllers\PermissionController::class);
@@ -47,5 +52,7 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
+
+
 
 
