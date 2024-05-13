@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 07, 2024 at 01:49 PM
+-- Generation Time: May 13, 2024 at 06:17 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -20,6 +20,34 @@ SET time_zone = "+00:00";
 --
 -- Database: `laravel`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `customer`
+--
+
+CREATE TABLE `customer` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `phone` varchar(255) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `customer`
+--
+
+INSERT INTO `customer` (`id`, `name`, `email`, `phone`, `created_at`, `updated_at`) VALUES
+(1, 'aabb', 'aa@gmail.com', '12345678', '2024-05-10 00:59:49', '2024-05-10 01:08:09'),
+(2, 'bbcc', 'bb@gmail.com', '12334445', '2024-05-10 00:59:49', '2024-05-10 01:08:09'),
+(3, 'ccdd', 'cc@gmail.com', '144141115', '2024-05-10 00:59:49', '2024-05-10 01:08:09'),
+(4, 'ddee', 'dd@gmail.com', '15151616', '2024-05-10 00:59:49', '2024-05-10 01:08:09'),
+(5, 'eeff', 'ee@gmail.com', '515151561', '2024-05-10 00:59:49', '2024-05-10 01:08:09'),
+(6, 'ffgg', 'ff@gmail.com', '111234455', '2024-05-10 00:59:49', '2024-05-10 01:08:09'),
+(7, 'gghh', 'gg@gmail.com', '636233367', '2024-05-10 01:08:09', '2024-05-10 01:08:09');
 
 -- --------------------------------------------------------
 
@@ -58,7 +86,9 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (2, '2014_10_12_100000_create_password_reset_tokens_table', 1),
 (3, '2019_08_19_000000_create_failed_jobs_table', 1),
 (4, '2019_12_14_000001_create_personal_access_tokens_table', 1),
-(5, '2024_05_07_053425_create_permission_tables', 2);
+(5, '2024_05_07_053425_create_permission_tables', 2),
+(6, '2024_05_09_115013_create_products_table', 3),
+(7, '2024_05_10_050519_create_customer_table', 4);
 
 -- --------------------------------------------------------
 
@@ -257,13 +287,19 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
 (1, 'ayushi', 'ayushi123@gmail.com', NULL, '$2y$10$ft4oES3Qu.l55YUzdMgjLOEquqHhIIw6C9ecRCTPTWthh6H22w/Wy', 'ptQRovoYFO6daLUbNtgWhpzlDUpzUJeXOlaMyHL8IjjJ6WP3UzZ6L2mRp58C', '2024-05-06 23:13:36', '2024-05-07 02:22:08'),
 (2, 'nikita', 'nikita@gmail.com', NULL, '$2y$10$bokd3jd.cU2ZcZdiWShSN.iAAqRJJ1wP22QZPcdLOv25lr.LKiqgi', 'QmVXnZrUIqQVSX4MF2YRO8E1VNKCcHRxz3319CQbeIwIpvV5K2eGYqPdMPyC', '2024-05-06 23:39:54', '2024-05-07 02:22:32'),
-(4, 'admin', 'admin@gmail.com', NULL, '$2y$10$LAGfmpeH8957wkdn26pRkO18Tn2vMtkOfmUdcaTtuzYSyHErVs3UW', 'g14mbZedvfnTGhxUKy5179hISWW7NCP10u3y6q5awnhWf1HpNVZCN3mLgpeo', '2024-05-07 05:18:27', '2024-05-07 05:18:27'),
-(5, 'super-admin', 'superadmin@gmail.com', NULL, '$2y$10$z0yZXlAQeqS86hhxgitm9O8JEGGptZjSrINB.LI9XaQ2D5qQ8hnLa', 'XQUSWkLo74e4tVnKvbU57XwcbC4JOtUFAr29d1t9IwfWGU502WAeJfzzLJxf', '2024-05-07 05:19:06', '2024-05-07 05:19:06'),
-(6, 'user', 'user@gmail.com', NULL, '$2y$10$yXHG5wZ78Ap4tpmUo6Z/EePAqby/by0ZFK5n9.zi8Fg4F7toFWTna', 'Q5bzDrLSaNWetm5PNwVV4tBGo68K9BZU4JYb3FaAsHNPYBApXYJiQkqOzTY5', '2024-05-07 05:55:45', '2024-05-07 05:55:45');
+(4, 'admin', 'admin@gmail.com', NULL, '$2y$10$LAGfmpeH8957wkdn26pRkO18Tn2vMtkOfmUdcaTtuzYSyHErVs3UW', 'WuuidulSasdZI6zXvhciZvmzXQm0uPuTY8nox0DF7maxGaJyXybxsGPuLQgB', '2024-05-07 05:18:27', '2024-05-07 05:18:27'),
+(5, 'super-admin', 'superadmin@gmail.com', NULL, '$2y$10$z0yZXlAQeqS86hhxgitm9O8JEGGptZjSrINB.LI9XaQ2D5qQ8hnLa', '7Q9k372lqb1dLoEkq9xPZHHjkCmogRL0klNALcRuBCkA8iYXNAL7gYgoertV', '2024-05-07 05:19:06', '2024-05-07 05:19:06'),
+(6, 'user', 'user@gmail.com', NULL, '$2y$10$yXHG5wZ78Ap4tpmUo6Z/EePAqby/by0ZFK5n9.zi8Fg4F7toFWTna', 'DOi4vdCP0wxwpJrGFvET8DdwCDTQadEIfmaI1FN1Gfpw27Kzf3kpbp6OyBGi', '2024-05-07 05:55:45', '2024-05-07 05:55:45');
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `customer`
+--
+ALTER TABLE `customer`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `failed_jobs`
@@ -339,6 +375,12 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT for table `customer`
+--
+ALTER TABLE `customer`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
 -- AUTO_INCREMENT for table `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
@@ -348,7 +390,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `permissions`
